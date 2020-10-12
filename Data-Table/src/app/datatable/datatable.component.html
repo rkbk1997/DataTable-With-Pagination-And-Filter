@@ -1,0 +1,120 @@
+    <div class="mat-elevation-z8 mb-5" style="margin:5px;background-color: gray;">
+      <mat-form-field style="margin-left:30px;color: #fff;width: 25%;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Sort By App">
+      </mat-form-field>
+    
+      <mat-form-field class="pl-3 pt-4 text-white">
+        <mat-label>Category</mat-label>
+        <select matNativeControl required (change)='applyFilter($event.target.value)'>
+          <option value="">Sort By Category</option>
+          <option value="ART_AND_DESIGN">ART_AND_DESIGN</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field class="pl-3 text-white">
+        <mat-label>Genres</mat-label>
+        <select matNativeControl required  (change)='applyFilter($event.target.value)'>
+          <option value="">Sort By Genres</option>
+          <option value="Art & Design;Pretend Play">Art & Design;Pretend Play</option>
+        </select>
+      </mat-form-field>
+      
+      
+    
+      <mat-table [dataSource]="dataSource" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="App">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> App </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.App}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="Category">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Category}} </mat-cell>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Rating">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Rating}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Reviews">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Reviews </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Reviews}} </mat-cell>
+        </ng-container>
+    
+    
+        <!-- Symbol Column
+        <ng-container matColumnDef="Reviews">
+          <mat-header-cell *matHeaderCellDef> Reviews </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Reviews}} </mat-cell>
+        </ng-container> -->
+    
+        <ng-container matColumnDef="Size">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Size </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Size}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Installs">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Installs </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Installs}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Type}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Price">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Price}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Content Rating">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Content Rating </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element['Content Rating']}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Genres">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Genres </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Genres}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Last Updated">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Updated </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element['Last Updated']}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Current Ver">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Current Ver </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element['Current Ver']}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="Android Ver">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Android Ver </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element['Android Ver']}} </mat-cell>
+        </ng-container>
+    
+        
+    
+    
+    
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+    
+      </mat-table>
+    
+      <mat-paginator  [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+    
+    
+    
+      
+    </div>
+    
+    <div *ngIf="!dataSource.data.length">
+      No Record found
+      </div>
