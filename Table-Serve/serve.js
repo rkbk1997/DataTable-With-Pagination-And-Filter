@@ -61,4 +61,21 @@ app.post('/getplaystoredata', (req, res) => {
 })
 
 
+app.post('/getapp', (req, res) => {
+    console.log(req.body)
+    playstore.find({ _id: req.body.id }).then((data) => {
+        console.log(data)
+        res.send(data)
+    })
+})
 
+app.post('/updateapp',(req,res)=>{
+    console.log(req.body)
+    playstore.update({_id:req.body._id},{$set:{'App':req.body.App,'Category':req.body.Category,'Rating':req.body.Rating}},(error,result)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.send(true);
+        }
+    })
+})
